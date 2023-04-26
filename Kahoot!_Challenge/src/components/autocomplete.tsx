@@ -10,7 +10,7 @@ class TrieNode {
   }
 }
 
-class Trie {
+export default class Trie {
   root: TrieNode;
 
   constructor() {
@@ -52,11 +52,11 @@ class Trie {
   }
 }
 
-const t = new Trie();
-t.insert("car");
-t.insert("carpet");
-t.insert("java");
-t.insert("javascript");
-t.insert("internet");
+// const t = new Trie();
+// t.insert("internet");
+// t.insert("car");
+// t.insert("carpet");
+// t.insert("java");
+// t.insert("javascript");
 
-console.log(t.autocomplete("ja"));
+// console.log(t.autocomplete("java"));
