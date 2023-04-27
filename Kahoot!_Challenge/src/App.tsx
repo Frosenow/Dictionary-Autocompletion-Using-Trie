@@ -11,8 +11,13 @@ export default function App() {
   dictionary.insert("java");
   dictionary.insert("javascript");
 
-  function handleForm(e: any) {
+  function handleForm(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    dictionary.insert(newWord);
+    console.log(`${newWord} added to Trie`);
+  }
+
+  function handleWordCheck() {
     console.log(dictionary.autocomplete(newWord));
   }
 
@@ -24,7 +29,10 @@ export default function App() {
           word:
           <input onChange={(e) => setNewWord(e.target.value)} value={newWord} />
         </div>
-        <button type="submit">Click me</button>
+        <button type="button" onClick={handleWordCheck}>
+          Check
+        </button>
+        <button type="submit">Add</button>
       </form>
     </>
   );

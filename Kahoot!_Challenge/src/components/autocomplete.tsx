@@ -1,62 +1,61 @@
-class TrieNode {
-  data: string;
+class PrefixHashTreeNode {
+  value: string;
   isEnd: boolean;
-  children: Map<string, TrieNode>;
+  children: Map<string, PrefixHashTreeNode>;
+  count: number;
 
-  constructor(c: string) {
-    this.data = c;
+  constructor(value: string) {
+    this.value = value;
     this.isEnd = false;
     this.children = new Map();
+    this.count = 0;
   }
 }
 
-export default class Trie {
-  root: TrieNode;
+export default class PrefixHashTree {
+  root: PrefixHashTreeNode;
 
   constructor() {
-    this.root = new TrieNode("");
+    this.root = new PrefixHashTreeNode("");
   }
 
   insert(word: string): void {
-    let node: TrieNode = this.root;
-    for (let char of word) {
+    let node: PrefixHashTreeNode = this.root;
+    for (let i = 0; i < word.length; i++) {
+      const char = word[i];
       if (!node.children.has(char)) {
-        node.children.set(char, new TrieNode(char));
+        node.children.set(
+          char,
+          new PrefixHashTreeNode(word.substring(0, i + 1))
+        );
       }
       node = node.children.get(char)!;
+      node.count++;
     }
     node.isEnd = true;
   }
 
-  autocomplete(word: string): string[] {
+  autocomplete(prefix: string): string[] {
     let res: string[] = [];
-    let node: TrieNode = this.root;
-    for (let char of word) {
+    let node: PrefixHashTreeNode = this.root;
+    for (let i = 0; i < prefix.length; i++) {
+      const char = prefix[i];
       if (node.children.has(char)) {
         node = node.children.get(char)!;
       } else {
         return res;
       }
     }
-    this.helper(node, res, word.substring(0, word.length - 1));
+    this.helper(node, res);
     return res;
   }
 
-  helper(node: TrieNode, res: string[], prefix: string): void {
+  helper(node: PrefixHashTreeNode, res: string[]): void {
     if (node.isEnd) {
-      res.push(prefix + node.data);
+      res.push(node.value);
     }
-    for (let char of node.children.keys()) {
-      this.helper(node.children.get(char)!, res, prefix + node.data);
+    for (let child of node.children.values()) {
+      this.helper(child, res);
     }
   }
 }
-
-// const t = new Trie();
-// t.insert("internet");
-// t.insert("car");
-// t.insert("carpet");
-// t.insert("java");
-// t.insert("javascript");
-
-// console.log(t.autocomplete("java"));
