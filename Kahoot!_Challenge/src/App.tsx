@@ -1,24 +1,27 @@
 import Dictionary from "./components/autocomplete";
-import { useState } from "react";
+import dictionaryDB from "./services/dictionary";
+import { useState, useEffect } from "react";
+
+type DictionaryObject = {
+  word: string;
+  id: number;
+};
 
 export default function App() {
   const [newWord, setNewWord] = useState("");
-
-  const dictionary = new Dictionary();
-  dictionary.insert("internet");
-  dictionary.insert("car");
-  dictionary.insert("carpet");
-  dictionary.insert("java");
-  dictionary.insert("javascript");
+  useEffect(() => {
+    const dictionary = new Dictionary();
+    dictionaryDB.getAll().then((response) => console.log(response));
+  }, []);
 
   function handleForm(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    dictionary.insert(newWord);
+    // dictionary.insert(newWord);
     console.log(`${newWord} added to Trie`);
   }
 
   function handleWordCheck() {
-    console.log(dictionary.autocomplete(newWord));
+    // console.log(dictionary.autocomplete(newWord));
   }
 
   return (
