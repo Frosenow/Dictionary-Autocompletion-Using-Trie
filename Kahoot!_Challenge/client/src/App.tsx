@@ -1,17 +1,29 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Autocompletion from "./components/autocomplete";
+import PrefixHashTree from "./components/autocomplete";
 
 export default function App() {
-  const [newWord, setNewWord] = useState("");
+  const [newWord, setNewWord] = useState(" ");
+  const [trie, setTrie] = useState(new Autocompletion());
+
+  useEffect(() => {
+    axios.get("dictionary").then((response) => {
+      const data = response.data;
+      const t = new Autocompletion();
+      data.forEach((word: string) => {
+        t.insert(word);
+      });
+      setTrie(t);
+    });
+  }, []);
 
   function handleForm(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    axios.get("dictionary").then((response) => console.log(response.data));
+    console.log(trie.autocomplete(newWord));
   }
 
-  function handleWordCheck() {
-    // console.log(dictionary.autocomplete(newWord));
-  }
+  function handleWordCheck() {}
 
   return (
     <>
