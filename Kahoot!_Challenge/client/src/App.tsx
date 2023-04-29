@@ -1,23 +1,12 @@
-import Dictionary from "./components/autocomplete";
-import dictionaryDB from "./services/dictionary";
-import { useState, useEffect } from "react";
-
-type DictionaryObject = {
-  word: string;
-  id: number;
-};
+import axios from "axios";
+import { useState } from "react";
 
 export default function App() {
   const [newWord, setNewWord] = useState("");
-  useEffect(() => {
-    const dictionary = new Dictionary();
-    dictionaryDB.getAll().then((response) => console.log(response));
-  }, []);
 
   function handleForm(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    // dictionary.insert(newWord);
-    console.log(`${newWord} added to Trie`);
+    axios.get("dictionary").then((response) => console.log(response.data));
   }
 
   function handleWordCheck() {
