@@ -1,10 +1,10 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import Autocompletion from "./components/autocomplete";
-import PrefixHashTree from "./components/autocomplete";
+import "./css/main.css";
 
 export default function App() {
-  const [newWord, setNewWord] = useState(" ");
+  const [newWord, setNewWord] = useState("");
   const [trie, setTrie] = useState(new Autocompletion());
 
   useEffect(() => {
@@ -18,26 +18,28 @@ export default function App() {
     });
   }, []);
 
-  function handleForm(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    console.log(trie.autocomplete(newWord));
+  function handleAutocomplete(e: React.ChangeEvent<HTMLInputElement>) {
+    const prefix = e.target.value;
+    setNewWord(prefix);
+    if (prefix !== "") {
+      console.log(trie.autocomplete(prefix));
+    }
   }
 
-  function handleWordCheck() {}
+  function addWord() {
+    trie.insert(newWord);
+  }
 
   return (
-    <>
+    <div className="container">
       <h1>Autocomplete</h1>
-      <form onSubmit={(e) => handleForm(e)}>
-        <div>
-          word:
-          <input onChange={(e) => setNewWord(e.target.value)} value={newWord} />
-        </div>
-        <button type="button" onClick={handleWordCheck}>
-          Check
-        </button>
-        <button type="submit">Add</button>
-      </form>
-    </>
+      <div>
+        <span>word:</span>
+        <input onChange={(e) => handleAutocomplete(e)} value={newWord} />
+      </div>
+      <button type="button" onClick={addWord}>
+        Add
+      </button>
+    </div>
   );
 }
