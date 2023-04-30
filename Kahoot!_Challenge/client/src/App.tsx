@@ -5,6 +5,7 @@ import Input from "./components/Input";
 import Button from "./components/Button";
 import Title from "./components/Title";
 import Matches from "./components/Matches";
+import Alert from "./components/Alert";
 import "./css/main.css";
 
 export default function App() {
