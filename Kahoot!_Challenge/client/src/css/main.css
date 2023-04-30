@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
 
+/* ***********************************
+            BASE STYLE 
+*********************************** */
+
 body {
   background-color: #381272;
   font-family: "Montserrat", sans-serif;
@@ -17,19 +21,74 @@ h1 {
   font-size: 3rem;
 }
 
-span {
-  color: #ffffff;
-}
-
-button {
-  margin: 0.5rem;
-  padding: 0.5rem 2rem;
-}
-
 ul {
   color: white;
   list-style-type: none;
   font-weight: 700;
   font-size: 2rem;
   text-align: center;
+}
+
+/* ***********************************
+            BUTTON STYLE 
+*********************************** */
+
+button {
+  border: none;
+  outline: none;
+  background-color: #2f2f2f;
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #fff;
+  border-radius: 5px;
+  transition: all ease 0.1s;
+  box-shadow: 0px 5px 0px 0px #333333;
+}
+
+button:active {
+  transform: translateY(5px);
+  box-shadow: 0px 0px 0px 0px #333333;
+}
+
+/* ***********************************
+            INPUT STYLE 
+*********************************** */
+
+input {
+  max-width: 190px;
+  background-color: #f5f5f5;
+  color: #242424;
+  padding: 0.15rem 0.5rem;
+  min-height: 40px;
+  border-radius: 4px;
+  outline: none;
+  border: none;
+  line-height: 1.15;
+  box-shadow: 0px 10px 20px -18px;
+}
+
+input:focus {
+  border-bottom: 2px solid #5b5fc7;
+  border-radius: 4px 4px 2px 2px;
+}
+
+input:hover {
+  outline: 1px solid lightgrey;
+}
+
+.input-container {
+  width: 20rem;
+  height: 8rem;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0.5rem 0;
+  border-radius: 10px;
+  background: rgb(236, 236, 236);
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }

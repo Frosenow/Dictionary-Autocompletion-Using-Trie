@@ -1,14 +1,13 @@
 type Props = {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   value: string;
-  name: string;
+  placeholder: string;
 };
 
-export default function Input({ onChange, value, name }: Props) {
+export default function Input({ onChange, value, placeholder }: Props) {
   return (
     <div>
-      <span>{name}</span>
-      <input onChange={onChange} value={value} />
+      <input onChange={onChange} value={value} placeholder={placeholder} />
     </div>
   );
 }

@@ -43,14 +43,16 @@ export default function App() {
   return (
     <div className="container">
       <Title title="Autocomplete" />
-      <Input
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-          handleAutocomplete(e)
-        }
-        value={newWord}
-        name="word:"
-      />
-      <Button type="button" onClick={addWord} name="Add" />
+      <div className="input-container">
+        <Input
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            handleAutocomplete(e)
+          }
+          value={newWord}
+          placeholder="Type something..."
+        />
+        <Button type="button" onClick={addWord} name="Add Word" />
+      </div>
       <Matches words={matches} />
     </div>
   );
