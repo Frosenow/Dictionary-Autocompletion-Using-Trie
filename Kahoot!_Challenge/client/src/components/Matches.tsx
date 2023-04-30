@@ -1,9 +1,29 @@
+import { FixedSizeList as List } from "react-window";
+
 export default function Matches({ words }: { words: string[] }) {
+  const Row = ({
+    index,
+    style,
+  }: {
+    index: number;
+    style: React.CSSProperties;
+  }) => (
+    <li key={`${words[index]}`} style={style}>
+      {words[index]}
+    </li>
+  );
+
   return (
-    <ul>
-      {words.map((match) => {
-        return <li key={`${match}`}>{match}</li>;
-      })}
-    </ul>
+    <List
+      height={400}
+      itemCount={words.length}
+      itemSize={40}
+      width={"80%"}
+      className={
+        words.length > 0 ? "list-container has-content" : "list-container"
+      }
+    >
+      {Row}
+    </List>
   );
 }

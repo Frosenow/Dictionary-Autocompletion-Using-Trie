@@ -92,3 +92,28 @@ input:hover {
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
     rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
+
+/* ***********************************
+            LIST STYLE 
+*********************************** */
+
+.list-container {
+  color: black;
+  list-style-type: none;
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin: 1rem 0.5rem;
+  text-align: center;
+  background-color: white;
+  height: auto !important;
+  max-height: 400px;
+  display: none;
+  border-radius: 10px;
+  background: rgb(236, 236, 236);
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.list-container.has-content {
+  display: block;
+}
