@@ -25,3 +25,11 @@ button {
   margin: 0.5rem;
   padding: 0.5rem 2rem;
 }
+
+ul {
+  color: white;
+  list-style-type: none;
+  font-weight: 700;
+  font-size: 2rem;
+  text-align: center;
+}
