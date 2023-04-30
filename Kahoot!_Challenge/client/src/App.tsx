@@ -12,6 +12,8 @@ export default function App() {
   const [newWord, setNewWord] = useState("");
   const [matches, setMatches] = useState<string[]>([]);
   const [trie, setTrie] = useState(new Autocompletion());
+  const [isVisible, setVisible] = useState(false);
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     axios.get("dictionary").then((response) => {
@@ -37,13 +39,25 @@ export default function App() {
   }
 
   function addWord() {
-    trie.insert(newWord);
-    console.log(`${newWord} added to dictionary`);
+    if (newWord) {
+      trie.insert(newWord.trim());
+      setMessage(`${newWord} added to dictionary`);
+      setVisible(true);
+      setTimeout(() => {
+        setVisible(false);
+      }, 1600);
+    } else {
+      setMessage(`Can not add empty strings`);
+      setVisible(true);
+      setTimeout(() => {
+        setVisible(false);
+      }, 1600);
+    }
   }
 
   return (
     <div className="container">
-      <Title title="Autocomplete" />
+      <Title title="autocompleter" />
       <div className="input-container">
         <Input
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -54,6 +68,7 @@ export default function App() {
         />
         <Button type="button" onClick={addWord} name="Add Word" />
       </div>
+      {isVisible && <Alert message={message} />}
       <Matches words={matches} />
     </div>
   );

@@ -104,7 +104,7 @@ input:hover {
   font-size: 1.2rem;
   margin: 1rem 0.5rem;
   text-align: center;
-  background-color: white;
+  background-color: #ffffff;
   height: auto !important;
   max-height: 400px;
   display: none;
@@ -119,6 +119,10 @@ input:hover {
 }
 
 .alert {
-  color: red;
-  font-size: 3rem;
+  color: white;
+  background-color: #4d248a;
+  border: 2px solid #ffffff;
+  padding: 0.5rem;
+  border-radius: 10px;
+  margin: 0.5rem;
 }
