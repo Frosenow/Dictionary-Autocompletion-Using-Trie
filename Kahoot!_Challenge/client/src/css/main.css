@@ -8,6 +8,10 @@ body {
   background-color: #381272;
   font-family: "Montserrat", sans-serif;
   text-transform: uppercase;
+  background-image: url("../assets/polygon.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 .container {
