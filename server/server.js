@@ -1,6 +1,9 @@
 const fs = require("fs");
 const express = require("express");
 
+// Set the port to listen on, using either the environment variable or a default of 5000
+const PORT = process.env.PORT || 5000;
+
 // Create an instance of the Express application
 const app = express();
 
@@ -8,8 +11,10 @@ const app = express();
 app.use(express.static("../client/dist"));
 
 app.get("/", function (_, res) {
-  res.sendFile(path.join(__dirname, "./client/dist/index.html"), function (err) {
-    res.status(500).send(err);
+  res.sendFile("index.html", { root: "../client/dist" }, function (err) {
+    if (err) {
+      res.status(500).send(err);
+    }
   });
 });
 
@@ -30,4 +35,6 @@ app.get("/dictionary", async (req, res) => {
 });
 
 // Start the server listening on the specified port
-app.listen(process.env.PORT || 5000);
+app.listen(PORT, () => {
+  console.log(`Server running on PORT: ${PORT}`);
+});
