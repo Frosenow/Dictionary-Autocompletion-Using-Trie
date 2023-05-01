@@ -1,3 +1,4 @@
+// Function that validates if a given word contains only letters (no numbers, symbols or spaces)
 function validateWord(word: string): boolean {
   if (!word) return false;
 
@@ -5,11 +6,4 @@ function validateWord(word: string): boolean {
   return pattern.test(word);
 }
 
-function checkForArray(word: string): string[] | boolean {
-  if (word.includes(",")) {
-    return word.split(",");
-  } else {
-    return false;
-  }
-}
 export { validateWord };

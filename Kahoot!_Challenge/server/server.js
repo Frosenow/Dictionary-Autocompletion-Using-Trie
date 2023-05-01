@@ -5,7 +5,7 @@ const PORT = process.env.PORT || 5000;
 const app = express();
 
 app.get("/dictionary", async (req, res) => {
-  const words = await fs.readFileSync("./assets/empty.txt", (err, data) => {
+  const words = await fs.readFileSync("./assets/english.txt", (err, data) => {
     if (err) {
       res.status(500).send(err);
     }
