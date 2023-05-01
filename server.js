@@ -9,14 +9,7 @@ const app = express();
 
 // Serve static files from the specified directory
 app.use(express.static("./client/dist"));
-
-app.get("/", function (_, res) {
-  res.sendFile("index.html", { root: "./client/dist" }, function (err) {
-    if (err) {
-      res.status(500).send(err);
-    }
-  });
-});
+app.use(express.static("./client.dist/index.html"));
 
 // Handle GET requests to the /dictionary route
 app.get("/dictionary", async (req, res) => {
