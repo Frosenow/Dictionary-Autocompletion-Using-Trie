@@ -26,8 +26,10 @@ app.get("/dictionary", async (req, res) => {
     }
     return data;
   });
+
   // Split the contents of the file into an array of words
   const wordsArr = words.toString().split(/\r?\n/);
+
   // Send the array of words as a JSON string in the response
   res.send(JSON.stringify(wordsArr));
 });
