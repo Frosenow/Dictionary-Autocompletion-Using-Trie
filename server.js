@@ -12,8 +12,8 @@ const app = express();
 app.use(express.static("./client/dist"));
 
 // Serve HTML file as the root endpoint
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "./client/dist/index.html"));
+app.get("*", (req, res) => {
+  res.sendFile("./client/dist/index.html");
 });
 
 // Handle GET requests to the /dictionary route
