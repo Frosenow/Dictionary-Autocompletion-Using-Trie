@@ -6,6 +6,7 @@ import Button from "./components/Button";
 import Title from "./components/Title";
 import Matches from "./components/Matches";
 import Alert from "./components/Alert";
+import { validateWord } from "./services/validaiton";
 import "./css/main.css";
 
 export default function App() {
@@ -40,8 +41,14 @@ export default function App() {
 
   function addWord() {
     if (newWord) {
-      trie.insert(newWord.trim());
-      setMessage(`${newWord} added to dictionary`);
+      let message = "Incorrect word";
+
+      if (validateWord(newWord)) {
+        trie.insert(newWord.trim());
+        message = `${newWord} added to dictionary`;
+      }
+
+      setMessage(message);
       setVisible(true);
       setTimeout(() => {
         setVisible(false);
@@ -53,6 +60,7 @@ export default function App() {
         setVisible(false);
       }, 1600);
     }
+    setNewWord("");
   }
 
   return (
@@ -60,9 +68,7 @@ export default function App() {
       <Title title="autocompleter" />
       <div className="input-container">
         <Input
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            handleAutocomplete(e)
-          }
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleAutocomplete(e)}
           value={newWord}
           placeholder="Type something..."
         />
