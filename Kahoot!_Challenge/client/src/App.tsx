@@ -40,26 +40,20 @@ export default function App() {
   }
 
   function addWord() {
-    if (newWord) {
-      let message = "Incorrect word";
-
-      if (validateWord(newWord)) {
+    let message = "Incorrect word";
+    if (validateWord(newWord)) {
+      if (newWord == trie.autocomplete(newWord)[0]) {
+        message = `${newWord} is already in dictionary`;
+      } else {
         trie.insert(newWord.trim());
         message = `${newWord} added to dictionary`;
       }
-
-      setMessage(message);
-      setVisible(true);
-      setTimeout(() => {
-        setVisible(false);
-      }, 1600);
-    } else {
-      setMessage(`Can not add empty strings`);
-      setVisible(true);
-      setTimeout(() => {
-        setVisible(false);
-      }, 1600);
     }
+    setMessage(message);
+    setVisible(true);
+    setTimeout(() => {
+      setVisible(false);
+    }, 1600);
     setNewWord("");
   }
 
