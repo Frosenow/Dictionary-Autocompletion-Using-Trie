@@ -1,4 +1,5 @@
 const fs = require("fs");
+const path = require("path");
 const express = require("express");
 
 // Set the port to listen on, using either the environment variable or a default of 5000
@@ -9,7 +10,11 @@ const app = express();
 
 // Serve static files from the specified directory
 app.use(express.static("./client/dist"));
-app.use(express.static("./client.dist/index.html"));
+
+// Serve HTML file as the root endpoint
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "./client/dist/index.html"));
+});
 
 // Handle GET requests to the /dictionary route
 app.get("/dictionary", async (req, res) => {
