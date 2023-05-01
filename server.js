@@ -13,7 +13,7 @@ app.use(express.static("./client/dist"));
 
 // Serve HTML file as the root endpoint
 app.get("*", (req, res) => {
-  res.sendFile("./client/dist/index.html");
+  res.sendFile("index.html", { root: "client" });
 });
 
 // Handle GET requests to the /dictionary route
